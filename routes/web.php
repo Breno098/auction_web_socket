@@ -1,6 +1,19 @@
 <?php
 
+use App\Http\Controllers\Adm\TeamController;
+use App\Http\Controllers\Adm\CountryController;
+use App\Http\Controllers\Adm\GameController;
+use App\Http\Controllers\Adm\OfficialController;
+use App\Http\Controllers\Adm\CompetitionController;
+use App\Http\Controllers\Adm\PlayerController;
+use App\Http\Controllers\Adm\StadiumController;
+
+use App\Http\Controllers\Gambler\CompetitionController as GamblerCompetitionController;
+use App\Http\Controllers\Gambler\Dashboard as GamblerDashboard;
+use App\Http\Controllers\Gambler\GeneralController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +27,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Inertia::render('Auth/Login');
 });
+
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function() {
+    Route::get('/dashboard', function(){
+        return Inertia::render('Adm/Dashboard');
+    })->name('dashboard');
+});
+
+
