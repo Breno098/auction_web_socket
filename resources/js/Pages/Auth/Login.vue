@@ -3,14 +3,16 @@
        <v-main>
             <v-container fluid fill-height>
                 <v-layout flex align-center justify-center>
-                    <v-flex xs12 sm4 elevation-6>
+                    <v-flex xs12 sm8 elevation-6>
                         <v-card elevation="24">
                              <v-img
                                 class="white--text align-end"
                                 height="400px"
-                                src="https://cdn.jornaldebrasilia.com.br/wp-content/uploads/2020/04/futebol-brasileiro.jpg"
+                                src="http://blog.francoleiloes.com.br/wp-content/uploads/2018/06/5-dicas-para-participar-de-um-leilao-de-imoveis_blog.png"
                             >
-                                <v-card-title>Fut Gamblers 2.0</v-card-title>
+                                <v-card-title class="black--text font-weight-bold text-h5">
+                                    Leilões BILD/Vitta
+                                </v-card-title>
                             </v-img>
                             <v-card-text class="pt-4">
                                 <v-row>
@@ -103,9 +105,9 @@
             })
         },
     },
-    mounted(){
-        this.$vuetify.theme.dark = true;
-    },
+    // mounted(){
+    //     this.$vuetify.theme.dark = true;
+    // },
   }
 </script>
 

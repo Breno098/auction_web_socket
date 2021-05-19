@@ -1,20 +1,15 @@
 <template>
     <app-layout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
-            </h2>
-        </template>
-
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <pre>
-                        {{ dados }}
-                    </pre>
-                </div>
-            </div>
-        </div>
+        <v-row class="justify-center">
+            <v-col cols="12">
+                <v-card>
+                    <v-card-title class="d-flex justify-end mb-6">
+                    </v-card-title>
+                    <v-card-text>
+                    </v-card-text>
+                </v-card>
+            </v-col>
+        </v-row>
     </app-layout>
 </template>
 
@@ -22,11 +17,16 @@
     import AppLayout from '@/Layouts/AppLayout'
 
     export default {
-        props: {
-            dados: Array
-        },
         components: {
             AppLayout,
         },
+        mounted() {
+            console.log('Here')
+
+            window.Echo.channel('channel')
+                .listen('Hello', (e) => {
+                    console.log(e)
+                })
+        }
     }
 </script>
