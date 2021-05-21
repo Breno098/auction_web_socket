@@ -16,13 +16,10 @@ class ItemController extends Controller
 {
     public function index()
     {
-        $items = Item::orderBy('created_at')->get();
-
-        foreach ($items as $item) {
-            $item->photos;
-            $item->category;
-            $item->bids;
-        }
+        $items = Item::with(['photos', 'category', 'bids'])
+                    ->where('status', 'open')
+                    ->orderBy('created_at')
+                    ->get();
 
         return Inertia::render('App/Item', [
             'items' => $items

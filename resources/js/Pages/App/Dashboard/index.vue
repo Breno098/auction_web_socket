@@ -41,13 +41,13 @@
                                                 VALOR ATUAL
                                             </div>
                                             <div class="indigo--text font-weight-bold text-h5">
-                                                R$ {{ item.bids.length > 0 ?  item.bids[item.bids.length - 1].value.toLocaleString('pt-BR') : item.initial_value.toLocaleString('pt-BR') }},00
+                                                R$ {{ item.atual_bid ? item.atual_bid.value.toLocaleString('pt-BR') : item.initial_value.toLocaleString('pt-BR') }},00
                                             </div>
                                         </div>
 
                                         <div class="d-flex justify-space-between align-center">
                                             <v-icon color="brown darken-1">mdi-gavel</v-icon>
-                                            {{ item.bids.length ? item.bids.length : 'Seja o primeiro a dar um lance' }}
+                                            {{ item.bids_count > 0 ? item.bids_count : 'Dê o primeiro lance' }}
                                         </div>
 
                                         <v-divider class="mx-1 my-2"></v-divider>
@@ -100,13 +100,17 @@
             dateFormat (date) {
                 return moment(date).format('DD/MM/YYYY | HH:mm')
             },
+            getOpenStatusItems(){
+                    window.Echo
+                    .channel('open.status.items')
+                    .listen('.open.status.items', (e) => {
+                        this.items = e._items
+                    })
+            }
         },
         mounted() {
             this.items = this._items;
-
-            window.Echo.channel('item-open').listen('ItemOpen', (e) => {
-                this.items = e.items
-            })
+            this.getOpenStatusItems();
         }
     }
 </script>

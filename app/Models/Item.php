@@ -30,9 +30,15 @@ class Item extends Model
         'color',
     ];
 
-    // protected $appends = [
-    //     'photos',
-    // ];
+    protected $casts = [
+        'initial_date' => 'datetime:Y-m-d H:i',
+        'final_date' => 'datetime:Y-m-d H:i',
+        'real_final_date' => 'datetime:Y-m-d H:i'
+    ];
+
+    protected $appends = [
+        'atual_bid',
+    ];
 
     public function category()
     {
@@ -49,8 +55,13 @@ class Item extends Model
         return $this->hasMany(Bid::class);
     }
 
-    // public function getPhotosAttribute()
-    // {
-    //     return ['attr' => 'photos'];
-    // }
+    public function getAtualBidAttribute()
+    {
+        return $this->bids()->orderBy('id', 'desc')->first();
+    }
+
+    public function latestBid()
+    {
+        return $this->hasOne(Bid::class)->latest();
+    }
 }

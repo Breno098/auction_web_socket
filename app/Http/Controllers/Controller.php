@@ -11,14 +11,4 @@ use Inertia\Inertia;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-    public function redirectErrorPage($message = '', $code = null)
-    {
-        return Inertia::render('Adm/Messages', [
-            'messages' => [
-                'error' => $message,
-                'code' => $code
-            ],
-        ]);
-    }
 }
