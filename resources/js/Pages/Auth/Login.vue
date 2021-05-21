@@ -1,11 +1,76 @@
  <template>
   <v-app>
        <v-main>
-            <v-container fluid fill-height>
+            <v-container fluid fill-height style="background: #7986CB; background: linear-gradient(to bottom, #9FA8DA, #5C6BC0, #303F9F);">
                 <v-layout flex align-center justify-center>
                     <v-flex xs12 sm8 elevation-6>
-                        <v-card elevation="24">
-                             <v-img
+                        <v-card elevation="24" color="indigo darken-3">
+                            <v-row>
+                                <v-col cols="4" class="py-0 mx-0 px-0">
+                                    <v-container
+                                        align-center
+                                        justify-space-around
+                                        fill-height
+                                        flex-column
+                                    >
+                                        <div>
+                                            <v-icon dark class="text-h1">mdi-account-circle</v-icon>
+                                        </div>
+
+                                        <div class="white--text text-h2">
+                                            Auction
+                                        </div>
+                                    </v-container>
+                                </v-col>
+
+                                <v-col cols="8" class="py-0 mx-0 px-0">
+                                    <v-card class="py-12 px-10">
+                                        <v-row>
+                                            <v-col cols="12">
+                                                <v-text-field
+                                                    v-model="form.email"
+                                                    label="Email"
+                                                    color="indigo darken-3"
+                                                    required
+                                                    v-on:keyup.enter="submit"
+                                                    outlined
+                                                    prepend-inner-icon="mdi-email"
+                                                    :hint="errors.email === 'The email field is required.' ? 'Insira a email' : errors.email"
+                                                    :persistent-hint="errors.email"
+                                                ></v-text-field>
+                                            </v-col>
+
+                                            <v-col cols="12">
+                                                <v-text-field
+                                                    v-model="form.password"
+                                                    label="Password"
+                                                    color="indigo darken-3"
+                                                    required
+                                                    type="password"
+                                                    v-on:keyup.enter="submit"
+                                                    outlined
+                                                    prepend-inner-icon="mdi-lock-open"
+                                                    :hint="errors.password === 'The password field is required.' ? 'Insira a senha' : errors.password"
+                                                    :persistent-hint="errors.password"
+                                                ></v-text-field>
+                                            </v-col>
+
+                                            <v-col cols="8">
+                                                <div class="indigo--text">
+                                                    Ainda não possui conta? <b>Clique aqui</b>
+                                                </div>
+                                            </v-col>
+
+                                            <v-col cols="12">
+                                                <v-btn color="indigo darken-3 white--text" v-on:click="submit" x-large>
+                                                    Entrar
+                                                </v-btn>
+                                            </v-col>
+                                        </v-row>
+                                    </v-card>
+                                </v-col>
+                            </v-row>
+                             <!-- <v-img
                                 class="white--text align-end"
                                 height="400px"
                                 src="http://blog.francoleiloes.com.br/wp-content/uploads/2018/06/5-dicas-para-participar-de-um-leilao-de-imoveis_blog.png"
@@ -13,49 +78,7 @@
                                 <v-card-title class="black--text font-weight-bold text-h5">
                                     Leilões BILD/Vitta
                                 </v-card-title>
-                            </v-img>
-                            <v-card-text class="pt-4">
-                                <v-row>
-                                    <v-col cols="12">
-                                        <v-text-field
-                                            v-model="form.email"
-                                            label="Email"
-                                            color="green darken-1"
-                                            required
-                                            v-on:keyup.enter="submit"
-                                        ></v-text-field>
-                                        <div v-if="errors.email">
-                                            <v-alert dense type="error" text>
-                                                 {{ errors.email === 'The email field is required.' ? 'Insira o email' : errors.email === 'These credentials do not match our records.' ? 'Email ou senha incorretos' : errors.email }}
-                                            </v-alert>
-                                        </div>
-                                    </v-col>
-
-                                    <v-col cols="12">
-                                        <v-text-field
-                                            v-model="form.password"
-                                            label="Password"
-                                            color="green darken-1"
-                                            required
-                                            type="password"
-                                            v-on:keyup.enter="submit"
-                                        ></v-text-field>
-                                        <div v-if="errors.password">
-                                            <v-alert dense type="error" text>
-                                                {{ errors.password === 'The password field is required.' ? 'Insira a senha' : errors.password}}
-                                            </v-alert>
-                                        </div>
-                                    </v-col>
-
-                                    <v-col cols="12">
-                                        <v-checkbox
-                                            v-model="form.remember"
-                                            label="Do you agree?"
-                                            required
-                                        ></v-checkbox>
-                                    </v-col>
-                                </v-row>
-                            </v-card-text>
+                            </v-img> -->
 
                             <!-- <v-card-actions>
                                 <v-btn text block>
@@ -65,11 +88,11 @@
                                 </v-btn>
                             </v-card-actions>
                             <v-divider/> -->
-                            <v-card-actions>
-                                <v-btn color="success" v-on:click="submit" block text>
+                            <!-- <v-card-actions>
+                                <v-btn color="indigo darken-3" v-on:click="submit" block x-large>
                                     Entrar
                                 </v-btn>
-                            </v-card-actions>
+                            </v-card-actions> -->
                         </v-card>
                     </v-flex>
                 </v-layout>
