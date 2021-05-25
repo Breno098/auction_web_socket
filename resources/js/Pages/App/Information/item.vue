@@ -75,8 +75,16 @@
                                     </v-card-text>
 
                                     <v-card-actions>
-                                        <v-btn color="orange darken-3" class="font-weight-bold white--text" block @click="dialog = true">
-                                            Dar lance
+                                        <v-btn
+                                            color="orange darken-3"
+                                            class="font-weight-bold white--text"
+                                            block
+                                            @click="dialog = true"
+                                            :disabled="item.latest_bid && item.latest_bid.user_id === $page.props.user.id"
+                                        >
+                                            {{
+                                                item.latest_bid && item.latest_bid.user_id === $page.props.user.id ? 'Último lance foi seu' : 'Dar lance!'
+                                            }}
                                         </v-btn>
                                     </v-card-actions>
                                 </v-card>

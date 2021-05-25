@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\OpenStatusItems;
+use App\Events\AllItems;
+use App\Events\HomeItems;
 use App\Events\BidsToItem;
 use App\Events\BidsToUser;
 use App\Models\Item;
@@ -39,7 +40,9 @@ class BidController extends Controller
 
     private function updateChannelsInformations($item)
     {
-        broadcast(new OpenStatusItems);
+        broadcast(new AllItems);
+
+        broadcast(new HomeItems);
 
         broadcast(new BidsToItem($item));
 

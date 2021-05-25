@@ -24,7 +24,7 @@
                                     </div>
                                 </v-col>
 
-                                 <v-col cols="12">
+                                <v-col cols="12">
                                     <v-textarea
                                         v-model="form.description"
                                         label="Descrição"
@@ -35,6 +35,14 @@
                                     <div v-if="errors.description">
                                         <v-alert dense type="error" text>{{ errors.description }}</v-alert>
                                     </div>
+                                </v-col>
+
+                                <v-col cols="12">
+                                    <v-chip-group mandatory active-class="indigo darken-1 white--text" v-model="form.icon">
+                                        <v-chip v-for="icon in icons" :key="icon" :value="icon">
+                                            <v-icon> {{ icon }}</v-icon>
+                                        </v-chip>
+                                    </v-chip-group>
                                 </v-col>
 
                                 <v-col cols="12">
@@ -65,8 +73,24 @@
             form: {
                 name: '',
                 description: '',
-                id: null
-            }
+                id: null,
+                icon: 'mdi-home'
+            },
+            icons: [
+                'mdi-home',
+                'mdi-car',
+                'mdi-motorbike',
+                'mdi-mouse',
+                'mdi-sofa',
+                'mdi-home-variant',
+                'mdi-treasure-chest',
+                'mdi-tshirt-crew',
+                'mdi-book-open-variant',
+                'mdi-cat',
+                'mdi-wrench',
+                'mdi-view-list',
+                'mdi-format-list-bulleted'
+            ]
         }),
         mounted(){
             if(this.category){

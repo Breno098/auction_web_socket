@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\BidController;
@@ -19,10 +19,13 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function() {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
     Route::get('informations/item/{item}', [InformationController::class, 'item'])->name('informations.item');
     Route::get('informations/bids-to-user', [InformationController::class, 'bidsToUser'])->name('informations.bids-to-user');
+
+    Route::get('/informations/items', [InformationController::class, 'items'])->name('informations.items');
+    // Route::get('informations/items-category/{category}', [InformationController::class, 'items'])->name('informations.items-category');
 
     Route::post('bid/set-to-user/{item}', [BidController::class, 'setToUser'])->name('bid.set-to-user');
 

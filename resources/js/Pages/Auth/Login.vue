@@ -1,5 +1,5 @@
  <template>
-  <v-app>
+    <v-app>
        <v-main>
             <v-container fluid fill-height style="background: #7986CB; background: linear-gradient(to bottom, #9FA8DA, #5C6BC0, #303F9F);">
                 <v-layout flex align-center justify-center>
@@ -14,10 +14,10 @@
                                         flex-column
                                     >
                                         <div>
-                                            <v-icon dark class="text-h1">mdi-account-circle</v-icon>
+                                            <v-icon dark class="text-h1">mdi-gavel</v-icon>
                                         </div>
 
-                                        <div class="white--text text-h2">
+                                        <div class="white--text text-h3">
                                             Auction
                                         </div>
                                     </v-container>
@@ -34,6 +34,7 @@
                                                     required
                                                     v-on:keyup.enter="submit"
                                                     outlined
+                                                    dense
                                                     prepend-inner-icon="mdi-email"
                                                     :hint="errors.email === 'The email field is required.' ? 'Insira a email' : errors.email"
                                                     :persistent-hint="errors.email"
@@ -49,6 +50,7 @@
                                                     type="password"
                                                     v-on:keyup.enter="submit"
                                                     outlined
+                                                    dense
                                                     prepend-inner-icon="mdi-lock-open"
                                                     :hint="errors.password === 'The password field is required.' ? 'Insira a senha' : errors.password"
                                                     :persistent-hint="errors.password"
@@ -56,13 +58,13 @@
                                             </v-col>
 
                                             <v-col cols="8">
-                                                <div class="indigo--text">
+                                                <div class="indigo--text text-caption">
                                                     Ainda não possui conta? <b>Clique aqui</b>
                                                 </div>
                                             </v-col>
 
                                             <v-col cols="12">
-                                                <v-btn color="indigo darken-3 white--text" v-on:click="submit" x-large>
+                                                <v-btn color="indigo darken-3 white--text" v-on:click="submit" large>
                                                     Entrar
                                                 </v-btn>
                                             </v-col>
@@ -70,29 +72,11 @@
                                     </v-card>
                                 </v-col>
                             </v-row>
-                             <!-- <v-img
-                                class="white--text align-end"
-                                height="400px"
-                                src="http://blog.francoleiloes.com.br/wp-content/uploads/2018/06/5-dicas-para-participar-de-um-leilao-de-imoveis_blog.png"
-                            >
-                                <v-card-title class="black--text font-weight-bold text-h5">
-                                    Leilões BILD/Vitta
-                                </v-card-title>
-                            </v-img> -->
-
-                            <!-- <v-card-actions>
-                                <v-btn text block>
-                                    <inertia-link v-if="true" :href="route('password.request')" style="text-decoration: none; color: white">
-                                        Forgot your password?
-                                    </inertia-link>
-                                </v-btn>
-                            </v-card-actions>
-                            <v-divider/> -->
-                            <!-- <v-card-actions>
-                                <v-btn color="indigo darken-3" v-on:click="submit" block x-large>
-                                    Entrar
-                                </v-btn>
-                            </v-card-actions> -->
+                            <!--
+                                <inertia-link v-if="true" :href="route('password.request')" style="text-decoration: none; color: white">
+                                    Forgot your password?
+                                </inertia-link>
+                            -->
                         </v-card>
                     </v-flex>
                 </v-layout>

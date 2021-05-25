@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-system-bar app color="indigo darken-3" height="35">
+    <v-system-bar app color="indigo darken-3" height="25">
         <v-spacer></v-spacer>
 
         <v-btn class="white--text" text small>
@@ -12,17 +12,41 @@
         </v-btn>
     </v-system-bar>
 
-    <v-app-bar app color="grey lighten-2">
+    <v-app-bar app color="grey lighten-2" height="75">
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
         <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
-                <v-btn icon v-bind="attrs" v-on="on">
-                    <v-icon color="indigo darken-1">mdi-home</v-icon>
-                </v-btn>
+                <inertia-link :href="route('home.index')" style="text-decoration: none">
+                    <v-btn icon v-bind="attrs" v-on="on">
+                        <v-icon color="indigo darken-1">mdi-home</v-icon>
+                    </v-btn>
+                </inertia-link>
             </template>
             <span>Inicio</span>
         </v-tooltip>
+
+        <v-spacer></v-spacer>
+
+        <v-autocomplete
+            :items="itemsSearch"
+            cache-items
+            class="mx-4"
+            flat
+            hide-no-data
+            hide-details
+            label="Posso ajudar?"
+            solo
+            item-text="label"
+        >
+            <template v-slot:item="data">
+                <v-list-item>
+                    <inertia-link :href="route(data.item.route, data.item.params)" style="text-decoration: none">
+                        <v-list-item-content v-text="data.item.label"></v-list-item-content>
+                    </inertia-link>
+                </v-list-item>
+            </template>
+        </v-autocomplete>
 
         <v-spacer></v-spacer>
 
@@ -34,7 +58,7 @@
                     </v-btn>
                 </inertia-link>
             </template>
-            <span>Meus itens</span>
+            <span>Meus lances</span>
         </v-tooltip>
 
 
@@ -114,7 +138,7 @@
         menu: [{
                 title: 'Home',
                 items: [
-                    { title: 'Dashboard', icon: 'mdi-view-dashboard', route: 'dashboard.index' },
+                    { title: 'Home', icon: 'mdi-home', route: 'home.index' },
                 ]
             }, {
                 title: 'Cadastros',
@@ -124,19 +148,25 @@
                 ]
             },
         ],
-        right: null,
-        user_bids: []
+        itemsSearch: [{
+            label: 'Itens para leilão',
+            route: 'informations.items'
+        }, {
+            label: 'Meus lances',
+            route: 'informations.bids-to-user'
+        }
+        // {
+        //     label: 'ITEM 2',
+        //     route: 'informations.item',
+        //     params: {
+        //         id: 2
+        //     }
+        // }
+        ]
     }),
     methods: {
         logout() {
             this.$inertia.post(route('logout'));
-        },
-        channelUserBids(){
-            window.Echo
-            .channel('bids.to.user')
-            .listen('.bids.to.user', (e) => {
-                this.user_bids = e._bids;
-            })
         },
     },
     mounted() {
@@ -152,7 +182,7 @@
 
 * {
     /* font-family: 'RocknRoll One', sans-serif; */
-    font-size: 10px;
+    /* font-size: 10px; */
 }
 
 .v-application ::-webkit-scrollbar {

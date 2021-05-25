@@ -29,6 +29,9 @@
                         >
                             <template v-slot:item="row">
                                 <tr>
+                                    <td>
+                                        <v-icon>{{ row.item.icon }}</v-icon>
+                                    </td>
                                     <td>{{row.item.name}}</td>
                                     <td>{{row.item.description}}</td>
                                     <td>
@@ -101,6 +104,7 @@
             deleted: {},
             search: '',
             headers: [{
+            }, {
                 text: 'Nome',
                 value: 'name'
             }, {
